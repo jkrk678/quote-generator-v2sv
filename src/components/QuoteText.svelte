@@ -21,7 +21,6 @@
             alert(`There is an error. The error is: ${error}`);
         }
     }
-    getQuotes();
 
     const tweetQuote = () => {
         const twitterUrl = `https://twitter.com/intent/tweet?text=${quote} - ${author}`;
