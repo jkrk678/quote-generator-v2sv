@@ -41,7 +41,7 @@
     </div>
 
     <div class="buttons">
-        <button class="twitter-button" on:click={tweetQuote}>
+        <button class="twitter-button" on:click={tweetQuote} aria-label="Tweet this quote">
             <i class="fab fa-twitter"></i>
         </button>
         <Button on:click={newQuote} />
