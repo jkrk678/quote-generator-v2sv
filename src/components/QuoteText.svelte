@@ -3,20 +3,18 @@
     import Loader from './Loader.svelte';
 
     let apiQuotes = [];
-    let author = '';
     let quote = '';
 
     const newQuote = () => {
-        const newQuote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
-        author = newQuote.author === null ? 'Unknown' : newQuote.author;
-        quote = newQuote.text;
+        quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
+        return quote;
     }
     async function getQuotes() {
         const apiUrl = 'https://type.fit/api/quotes';
         try {
             const response = await fetch(apiUrl);
             apiQuotes = await response.json();
-            newQuote();
+            return newQuote();
         } catch (error) {
             alert(`There is an error. The error is: ${error}`);
         }
@@ -33,10 +31,10 @@
 {:then apiQuotes}
 <div>
     <i class="fas fa-quote-left"></i>
-    <span class={quote.length > 120 ? 'long-text' : 'text'}>{quote}</span>
+    <span class={quote.text.length > 120 ? 'long-text' : 'text'}>{quote.text}</span>
 
     <div class="author">
-        <span>{author}</span>
+        <span>{quote.author ?? 'Unknown'}</span>
     </div>
 
     <div class="buttons">
